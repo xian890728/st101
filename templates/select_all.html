@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>查詢資料</title>
+	<style>
+	input[type=text], select {
+	  width: 100%;
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  display: inline-block;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	}
+
+	input[type=submit] {
+	  width: 100%;
+	  background-color: #1E90FF;
+	  color: white;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  font-family:DFKai-sb; /*標楷體*/
+	  font-size: 20px; //字型大小
+	}
+
+	input[type=submit]:hover {
+	  background-color: #6495ED;
+	}
+
+	div {
+	  border-radius: 5px;
+	  background-color: #f2f2f2;
+	  padding: 20px;
+	  font-family:Times New Roman; /*Times New Roman*/
+	  font-size: 20px;
+	}
+	</style>
+
+</head>
+<body style="background-color:lightblue">
+               
+<form action="" method="POST">{% csrf_token %}
+<table  style="position:absolute;top:20px;left:20px;font-family:標楷體; font-size:20px;" >
+	<th>2020.5 公司資訊查詢(大學範本)</th>
+	<tr>
+	<td></td>
+	</tr>
+	
+        <tr>
+		<td>統編：(範圍:16750540)</td>
+		</tr>
+		<tr>
+		<td><input type="text" name="cComid"></td>
+         </tr>
+		 
+         <tr>
+		<td>職務：</td><br>
+		</tr>
+	<tr>
+		<td><select name="cPosition">
+		 <option value="">全部</option>
+		 <option value="董事">董事</option>
+		 <option value="董事長">董事長</option>
+		 <option value="監察人">監察人</option>
+		 <option value="副董事長">副董事長</option>
+		 <option value="獨立董事">獨立董事</option>
+		</select></td><br>
+	
+		<!-- <td><input type="text" name="cPosition"></td><br> -->
+         </tr>
+		 
+		 
+         <tr>
+		<td>持股數或投資金額：(範例:50,000)</td><br>
+		</tr>
+		<tr>
+		<td><input type="text" name="cSharemoney" value="0"></td><br>
+         </tr>
+		 			
+         <tr>
+			<td><input type="submit" value="查詢"></td><br>
+		</tr>
+</table>				
+	
+</form>
+			
+				
+
+
+<table border="1" style="position:absolute;top:10px;left:500px;">
+        <th>統編</th>
+	<th>職務</th>
+	<th>持股數或投資金額</th>
+
+			
+	    {% for n in select_all %} 
+	<tr>
+		<td>{{n.cComid}}  </td>
+		<td>{{n.cPosition}}  </td>
+		<td>{{n.cSharemoney}}  </td>
+    </tr>
+	
+ {% endfor %} 
+
+
+</table>
+
+</body>
+</html>
